@@ -75,8 +75,8 @@ $count_panjang=mysqli_num_rows($notif_panjang);
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link fa fa-user">
-         Profil   
-       </a>
+          Profil
+        </a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="../logout.php" class="nav-link fa fa-arrow-left"> Logout</a>

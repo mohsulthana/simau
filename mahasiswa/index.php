@@ -93,8 +93,9 @@ $notif_perpanjang=intval($days);
         <a href="?modul=profil" class="nav-link fa fa-user">
          Profil 
           <?php if($_SESSION['status'] == "belum lengkap"){ ?>
-         <span class="badge badge-danger">*Profil Belum Lengkap</span>
+         <span class="badge badge-danger">*Profil belum lengkap</span>
           <?php } else { ?>
+            <span class="badge badge-success">*Profil lengkap</span>
           <?php } ?>  
        </a>
       </li>
@@ -193,7 +194,7 @@ $notif_perpanjang=intval($days);
               </li> 
               <?php } else { ?>  
           <?php if($_SESSION['status']=='Penyewa'){ ?>
-           <?php } else {?> 
+           <?php }?> 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-home"></i>
@@ -210,14 +211,13 @@ $notif_perpanjang=intval($days);
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="?modul=pilih_otomatis" class="nav-link">
                   <i class="fa fa-users"></i>
                   <p>Pilih Otomatis</p>
                 </a>
               </li>
             </ul>
           </li>
-        <?php } ?>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-home"></i>

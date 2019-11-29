@@ -28,8 +28,8 @@ $sql=mysqli_fetch_array($que);
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="<?php echo $sql['foto_profil']; ?>"
-                       alt="User profile picture">
+                        src="<?php echo $sql['foto_profil']; ?>"
+                        alt="User profile picture">
                 </div>
 
                 <h3 class="profile-username text-center"><?php echo $sql['nama']; ?></h3>
@@ -62,8 +62,7 @@ $sql=mysqli_fetch_array($que);
                 <strong><i class="fa fa-book mr-1"></i> Fakultas</strong>
 
                 <p class="text-muted">
-                  <?php echo $sql['fakultas']; 
-                   ?>
+                  <?php echo $sql['fakultas']; ?>
                 </p>
 
                 <hr>
@@ -110,13 +109,13 @@ $sql=mysqli_fetch_array($que);
                     <!-- Post -->
                     <div class="post">
                       <h3>Data Diri Lainnya : </h3>
-                     <span>Jenis Kelamin :  <?php echo $sql['jenis_kelamin']; ?></span><br><br>
-                     <span>Password :  <?php echo $sql['password']; ?></span><br><br>
-                     <span>Agama :  <?php echo $sql['agama']; ?></span><br><br>
-                     <span>Golongan Darah :  <?php echo $sql['gol_dar']; ?></span><br><br>
-                     <span>Nomor HP :  <?php echo $sql['no_hp']; ?></span><br><br>
-                     <span>Orang Tua / Wali :  <?php echo $sql['ortu_wali']; ?></span><br><br>
-                     <span>Nomor HP Orang Tua / Wali :  <?php echo $sql['no_hp_ortu']; ?></span> 
+                      <span>Jenis Kelamin :  <?php echo $sql['jenis_kelamin']; ?></span><br><br>
+                      <span>Password :  <?php echo $sql['password']; ?></span><br><br>
+                      <span>Agama :  <?php echo $sql['agama']; ?></span><br><br>
+                      <span>Golongan Darah :  <?php echo $sql['gol_dar']; ?></span><br><br>
+                      <span>Nomor HP :  <?php echo $sql['no_hp']; ?></span><br><br>
+                      <span>Orang Tua / Wali :  <?php echo $sql['ortu_wali']; ?></span><br><br>
+                      <span>Nomor HP Orang Tua / Wali :  <?php echo $sql['no_hp_ortu']; ?></span> 
                     </div>
                     <!-- /.post -->
                   </div>
@@ -449,12 +448,9 @@ $sql=mysqli_fetch_array($que);
                           <button type="submit" name="edit" class="btn btn-danger">Submit</button>
                         </div>
                       </div>
-
                       </div>
                     </form>
                   </div>
-
-
                   <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
@@ -485,7 +481,7 @@ $status=$_POST['status'];
 $a="UPDATE user set fakultas='$fakultas', jurusan='$jurusan', tanggal_lahir='$tanggal', agama='$agama', jenis_kelamin='$jk', alamat='$alamat', gol_dar='$goldar', no_hp='$nohp', ortu_wali='$orwa', no_hp_ortu='$norw', status='$status' where id_user='$idu'";
 $hasil = mysqli_query($connect,$a);
 
-echo "<script>alert('Anda Telah Melengkapi Data Diri...'); window.location = '../logout.php'</script>";
+echo "<script>alert('Anda telah melengkapi data diri yang diperlukan'); window.location = './index.php'</script>";
 }
 
 if(isset($_POST['edit'])){
