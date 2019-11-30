@@ -21,7 +21,7 @@ $dat=mysqli_fetch_array($sql);
 Silahkan Upload Bukti Pembayaran Anda : <br/>
 <form method="post" enctype="multipart/form-data">
 <span style="color: red">* Upload Bukti Berupa foto / Screen Shot jelas</span>
-<br/><input type="file" name="foto_bukti">
+<br/><input class="form-control" type="file" name="foto_bukti">
 <input type="hidden" name="id_kamar" value="<?php echo $dat['id_kamar'] ?>">
 <input type="hidden" name="id_user" value="<?php echo $_SESSION['id_user'] ?>">
 <input type="hidden" name="tanggal_upload" value="<?php echo date('Y-m-d') ?>">

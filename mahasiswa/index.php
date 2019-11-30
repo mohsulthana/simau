@@ -30,7 +30,7 @@ $notif_perpanjang=intval($days);
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Advanced form elements</title>
+  <title>Dashboard | SIMAU</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -89,63 +89,22 @@ $notif_perpanjang=intval($days);
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="?modul=profil" class="nav-link fa fa-user">
-         Profil 
-          <?php if($_SESSION['status'] == "belum lengkap"){ ?>
-         <span class="badge badge-danger">*Profil belum lengkap</span>
-          <?php } else { ?>
-            <span class="badge badge-success">*Profil lengkap</span>
-          <?php } ?>  
-       </a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../logout.php" class="nav-link fa fa-arrow-left"> Logout</a>
-      </li>
     </ul>
+    <?php if($_SESSION['status'] == "belum lengkap"){ ?>
+    <span class="badge badge-danger">*Profil belum lengkap</span>
+    <?php } else { ?>
+      <span class="badge badge-success">*Profil lengkap</span>
+    <?php } ?> 
 
         <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="fa fa-envelope-o"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="?modul=profil" class="nav-link fa fa-user">
+          Profil  
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="../assets/system_tools/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
       </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="fa fa-bell-o"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <i class="fa fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../logout.php" class="nav-link fa fa-arrow-right"> Logout</a>
       </li>
     </ul>
   </nav>
@@ -154,7 +113,7 @@ $notif_perpanjang=intval($days);
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
+    <a href="./index.php" class="brand-link">
       <img src="../assets/system_tools/dist/img/AdminLTELogo.png"
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
@@ -205,7 +164,7 @@ $notif_perpanjang=intval($days);
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="?modul=kamar_manual" class="nav-link">
+                <a href="?modul=data_pribadi" class="nav-link">
                   <i class="fa fa-user"></i>
                   <p>Pilih Manual</p>
                 </a>
@@ -332,10 +291,9 @@ $notif_perpanjang=intval($days);
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.0-alpha
+      <b>Versi</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2019.</strong> SIMAU (Sistem Manajemen Apartemen Unsri)
   </footer>
 
   <!-- Control Sidebar -->

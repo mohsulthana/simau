@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Data Rekomendasi | SIMAU</title>
+  <title>Data Pribadi | SIMAU</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -57,34 +57,34 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="card mt-5">
-          <h5 class="card-header">Pertanyaan rekomendasi</h5>
+          <h5 class="card-header">Pertanyaan data pribadi</h5>
           <div class="card-body">
             <form action="">
               <ol>
                 <li>
-                  <p>Apakah anda tidak masalah jika teman sekamar Anda mendengkur?</p>
+                  <p>Apakah anda ketika tidur mendengkur?</p>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="ya_mendengkur" name="mendengkur" value="true" class="custom-control-input">
-                    <label class="custom-control-label" for="ya_mendengkur">Ya, tidak masalah.</label>
+                    <label class="custom-control-label" for="ya_mendengkur">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="tidak_mendengkur" name="mendengkur" value="false" class="custom-control-input">
-                    <label class="custom-control-label" for="tidak_mendengkur">Tidak, saya keberatan.</label>
+                    <label class="custom-control-label" for="tidak_mendengkur">Tidak</label>
                   </div>
                 </li>
                 <li>
-                  <p>Apakah anda tidak masalah jika teman sekamar Anda merokok?</p>
+                  <p>Apakah anda adalah seorang perokok?</p>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="ya_merokok" name="merokok" value="true" class="custom-control-input">
-                    <label class="custom-control-label" for="ya_merokok">Ya, tidak masalah.</label>
+                    <label class="custom-control-label" for="ya_merokok">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="tidak_merokok" name="merokok" value="false" class="custom-control-input">
-                    <label class="custom-control-label" for="tidak_merokok">Tidak, saya keberatan.</label>
+                    <label class="custom-control-label" for="tidak_merokok">Tidak</label>
                   </div>
                 </li>
                 <li>
-                  <p>Apakah anda menyukai teman sekamar yang tidur dalam keadaan lampu gelap ?</p>
+                  <p>Apakah anda tidur dalam keadaan lampu tidur yang gelap?</p>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="ya_gelap" name="gelap" value="true" class="custom-control-input">
                     <label class="custom-control-label" for="ya_gelap">Ya</label>
@@ -95,7 +95,7 @@
                   </div>
                 </li>
                 <li>
-                  <p>Apakah anda menyukai teman sekamar yang menyukai peliharaan (kucing, anjing dll)?</p>
+                  <p>Apakah anda menyukai hewan peliharaan (kucing, anjing dll)?</p>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="ya_peliharaan" name="peliharaan" value="true" class="custom-control-input">
                     <label class="custom-control-label" for="ya_peliharaan">Ya</label>
@@ -106,7 +106,7 @@
                   </div>
                 </li>
                 <li>
-                  <p>Apakah anda menginginkan teman sekamar yang memiliki hobi membaca?</p>
+                  <p>Apakah anda memiliki hobi membaca?</p>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="ya_membaca" name="membaca" value="true" class="custom-control-input">
                     <label class="custom-control-label" for="ya_membaca">Ya</label>
@@ -117,7 +117,7 @@
                   </div>
                 </li>
                 <li>
-                  <p>Apakah anda menginginkan teman sekamar yang memiliki hobi menulis?</p>
+                  <p>Apakah anda memiliki hobi menulis (karya tulis, cerpen dan lain-lain)?</p>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="ya_menulis" name="menulis" value="true" class="custom-control-input">
                     <label class="custom-control-label" for="ya_menulis">Ya</label>
@@ -128,7 +128,7 @@
                   </div>
                 </li>
                 <li>
-                  <p>Apakah anda menginginkan teman sekamar yang bisa diajak untuk belajar bersama?</p>
+                  <p>Apakah anda adalah orang yang suka belajar bersama?</p>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="ya_belajar" name="belajar" value="true" class="custom-control-input">
                     <label class="custom-control-label" for="ya_belajar">Ya</label>
@@ -139,7 +139,7 @@
                   </div>
                 </li>
                 <li>
-                  <p>Apakah kamu ingin teman sekamarmu dapat diajak bermain game (game online maupun offline) bersama?</p>
+                  <p>Apakah anda senang bermain game (game online maupun offline) bersama?</p>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="ya_game" name="game" value="true" class="custom-control-input">
                     <label class="custom-control-label" for="ya_game">Ya</label>
@@ -150,7 +150,7 @@
                   </div>
                 </li>
                 <li>
-                  <p>Apakah anda menyukai teman sekamar yang bisa diajak makan bersama?</p>
+                  <p>Apakah anda suka makan bersama?</p>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="ya_makan" name="makan" value="true" class="custom-control-input">
                     <label class="custom-control-label" for="ya_makan">Ya</label>
@@ -161,7 +161,7 @@
                   </div>
                 </li>
                 <li>
-                  <p>Apakah kamu ingin teman sekamarmu bisa diajak jalan-jalan (hangout) bersama?</p>
+                  <p>Apakah anda suka berjalan- jalan (hangout) bersama?</p>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="ya_hangout" name="hangout" value="true" class="custom-control-input">
                     <label class="custom-control-label" for="ya_hangout">Ya</label>
@@ -172,7 +172,7 @@
                   </div>
                 </li>
               </ol>
-              <a href="?modul=data_pribadi" style="float: right;" class="btn btn-primary" type="submit">Lanjut ke data pribadi</a>
+              <a href="#" style="float: right;" class="btn btn-primary" type="submit">Simpan jawaban</a>
               <a href="#" style="float: right;" class="btn btn-primary-outline" type="submit">Batalkan</a>
             </form>
           </div>
