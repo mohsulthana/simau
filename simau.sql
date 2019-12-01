@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2019 at 03:16 PM
--- Server version: 10.1.40-MariaDB
--- PHP Version: 7.1.29
+-- Generation Time: Dec 01, 2019 at 11:18 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.1.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,6 +45,60 @@ INSERT INTO `bukti_bayar` (`id_bukti`, `id_user`, `tanggal_upload`, `foto_bukti`
 (2, 4, '2019-11-19', '../assets/foto_bukti/Screenshot (4).png', 1),
 (3, 9, '2019-11-26', '../assets/foto_bukti/96769.jpg', 3),
 (4, 11, '2019-11-28', '../assets/foto_bukti/96769.jpg', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_pribadi`
+--
+
+CREATE TABLE `data_pribadi` (
+  `id_user` int(11) NOT NULL,
+  `mendengkur` tinyint(1) NOT NULL,
+  `merokok` tinyint(1) NOT NULL,
+  `gelap` tinyint(1) NOT NULL,
+  `hewan` tinyint(1) NOT NULL,
+  `membaca` tinyint(1) NOT NULL,
+  `menulis` tinyint(1) NOT NULL,
+  `belajar` tinyint(1) NOT NULL,
+  `game` tinyint(1) NOT NULL,
+  `makan` tinyint(1) NOT NULL,
+  `hangout` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_pribadi`
+--
+
+INSERT INTO `data_pribadi` (`id_user`, `mendengkur`, `merokok`, `gelap`, `hewan`, `membaca`, `menulis`, `belajar`, `game`, `makan`, `hangout`) VALUES
+(13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_rekomendasi`
+--
+
+CREATE TABLE `data_rekomendasi` (
+  `id_user` int(11) NOT NULL,
+  `mendengkur` tinyint(1) NOT NULL,
+  `merokok` tinyint(1) NOT NULL,
+  `gelap` tinyint(1) NOT NULL,
+  `hewan` tinyint(1) NOT NULL,
+  `membaca` tinyint(1) NOT NULL,
+  `menulis` tinyint(1) NOT NULL,
+  `belajar` tinyint(1) NOT NULL,
+  `game` tinyint(1) NOT NULL,
+  `makan` tinyint(1) NOT NULL,
+  `hangout` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_rekomendasi`
+--
+
+INSERT INTO `data_rekomendasi` (`id_user`, `mendengkur`, `merokok`, `gelap`, `hewan`, `membaca`, `menulis`, `belajar`, `game`, `makan`, `hangout`) VALUES
+(13, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -359,7 +413,9 @@ INSERT INTO `user` (`id_user`, `nim`, `nama`, `jenis_kelamin`, `email`, `fakulta
 (9, '09031381520083', 'M. Aziz Kurniawan', 'Laki-laki', 'azizknw97@gmail.com', 'Hukum', 'Ilmu Hukum', 'katakuri', 'islam', 'kjhibi', 'A', '080808', 'ufttycy', 'nhgcghc', '../assets/foto_user/defaul.png', 'mahasiswa', 'Penyewa', '2019-11-30'),
 (10, '987654321', 'DERDI KURNIAWAN', '', 'derdi.9798@gmail.com', '', '', '6B6Z1P3V', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
 (11, '1', 'hanum', 'Laki-laki', 'azizknw97@gmail.com', 'Hukum', 'Ilmu Hukum', 'K8WEIEN8', 'kong fu chu', 'kebun bunga', 'O', '11', 'desmawan', 'sultana', '../assets/foto_user/defaul.png', 'mahasiswa', 'Penyewa', '2019-11-02'),
-(12, '234', 'okky', 'Laki-laki', 'azizknw97@gmail.com', 'Hukum', 'Ilmu Hukum', 'MACLZFEV', 'kristen', 'fafsa', 'A', '43242', 'sgsggdgews', 'fdsgs', '../assets/foto_user/defaul.png', 'mahasiswa', 'lengkap', '2019-11-08');
+(12, '234', 'okky', 'Laki-laki', 'azizknw97@gmail.com', 'Hukum', 'Ilmu Hukum', 'MACLZFEV', 'kristen', 'fafsa', 'A', '43242', 'sgsggdgews', 'fdsgs', '../assets/foto_user/defaul.png', 'mahasiswa', 'lengkap', '2019-11-08'),
+(13, '0902', 'sultan', '', 'sultan@gmail.com', '', '', 'TSI4UNRF', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(14, '0902', 'sultan', 'Laki-laki', 'muhammadsultana@outlook.com', 'Ekonomi', 'Manajemen', '5ADMOL9N', 'buddha', 'ssdgsdf', 'A', 'sdfgsdfg', 'dsfgsdfg', 'sdfgsdg', '../assets/foto_user/defaul.png', 'mahasiswa', 'lengkap', '2019-11-12');
 
 --
 -- Indexes for dumped tables
@@ -370,6 +426,18 @@ INSERT INTO `user` (`id_user`, `nim`, `nama`, `jenis_kelamin`, `email`, `fakulta
 --
 ALTER TABLE `bukti_bayar`
   ADD PRIMARY KEY (`id_bukti`);
+
+--
+-- Indexes for table `data_pribadi`
+--
+ALTER TABLE `data_pribadi`
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `data_rekomendasi`
+--
+ALTER TABLE `data_rekomendasi`
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `fakultas`
@@ -499,7 +567,23 @@ ALTER TABLE `temp_kamar_sewa`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `data_pribadi`
+--
+ALTER TABLE `data_pribadi`
+  ADD CONSTRAINT `data_pribadi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
+-- Constraints for table `data_rekomendasi`
+--
+ALTER TABLE `data_rekomendasi`
+  ADD CONSTRAINT `data_rekomendasi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

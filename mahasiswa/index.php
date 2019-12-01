@@ -129,7 +129,7 @@ $notif_perpanjang=intval($days);
           <img src="<?php echo $_SESSION['foto_profil'] ?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $_SESSION['nama']; ?></a>
+          <a href="?modul=profil" class="d-block"><?php echo $_SESSION['nama']; ?></a>
         </div>
       </div>
 
@@ -137,7 +137,7 @@ $notif_perpanjang=intval($days);
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+              with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
             <a href="index.php" class="nav-link">
               <i class="nav-icon fa fa-dashboard"></i>
@@ -145,7 +145,7 @@ $notif_perpanjang=intval($days);
                 </a>
               </li>
               <?php if($_SESSION['status'] == "belum lengkap"){ ?>
-               <li class="nav-item has-treeview">
+              <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-user"></i>
                 <p>Lengkapi Dulu Profil Anda</p>
@@ -153,9 +153,9 @@ $notif_perpanjang=intval($days);
               </li> 
               <?php } else { ?>  
           <?php if($_SESSION['status']=='Penyewa'){ ?>
-           <?php }?> 
+          <?php }?> 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="?modul=profil" class="nav-link">
               <i class="nav-icon fa fa-home"></i>
               <p>
                 Pilih Kamar
@@ -164,7 +164,7 @@ $notif_perpanjang=intval($days);
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="?modul=data_pribadi" class="nav-link">
+                <a href="?modul=kamar_manual" class="nav-link">
                   <i class="fa fa-user"></i>
                   <p>Pilih Manual</p>
                 </a>

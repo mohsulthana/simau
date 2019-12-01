@@ -1,4 +1,16 @@
 <?php
+
+// validate data pribadi
+$id = $_SESSION['id_user'];
+$data_pribadi = "SELECT data_pribadi.id_user FROM data_pribadi INNER JOIN user ON data_pribadi.id_user = $id";
+$sql = mysqli_query($connect, $data_pribadi);
+$arr = mysqli_fetch_array($sql);
+
+if ($arr == NULL) {
+  header("Location: ./data_pribadi");
+}
+
+
 $id = $_SESSION['id_user'];
 $status = $_SESSION['status'];
 

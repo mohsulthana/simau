@@ -1,3 +1,16 @@
+<?php
+// validate data pribadi
+$id = $_SESSION['id_user'];
+$data_pribadi = "SELECT data_pribadi.id_user FROM data_pribadi INNER JOIN user ON data_pribadi.id_user = $id";
+$sql = mysqli_query($connect, $data_pribadi);
+$arr = mysqli_fetch_array($sql);
+
+if ($arr === NULL) {
+  echo "<script>location.href = 'http://localhost/simau/mahasiswa/index.php?modul=data_pribadi'</script>";
+}
+?>
+
+
 <h4>Pilih Kamar Secara Manual</h4>
 <h5 style="color: red">*Note : Jika Kapasitas Penuh Namun Tidak Ada Info Kamar, Maka Kapasitas Tersebut Sedang Dibooking User Lain...</h5>
 <br/>
