@@ -59,12 +59,12 @@
         <div class="card mt-5">
           <h5 class="card-header">Pertanyaan rekomendasi</h5>
           <div class="card-body">
-            <form action="">
+            <form action="" method="POST">
               <ol>
                 <li>
                   <p>Apakah anda tidak masalah jika teman sekamar Anda mendengkur?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_mendengkur" name="mendengkur" value="true" class="custom-control-input">
+                    <input type="radio" id="ya_mendengkur" name="mendengkur" value="true" class="custom-control-input" selected>
                     <label class="custom-control-label" for="ya_mendengkur">Ya, tidak masalah.</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
@@ -174,6 +174,7 @@
               </ol>
               <a href="?modul=data_pribadi" style="float: right;" class="btn btn-primary" type="submit">Lanjut ke data pribadi</a>
               <a href="#" style="float: right;" class="btn btn-primary-outline" type="submit">Batalkan</a>
+              <input style="float: right;" class="btn btn-primary" type="submit" value="get recommend" formaction="?modul=cosim" />
             </form>
           </div>
         </div>

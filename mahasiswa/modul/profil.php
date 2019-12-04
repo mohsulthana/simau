@@ -7,6 +7,7 @@ $sql = mysqli_query($connect, $data_pribadi);
 $arr = mysqli_fetch_array($sql);
 
 if ($arr == NULL) {
+  echo "haha";
   header("Location: ./data_pribadi");
 }
 

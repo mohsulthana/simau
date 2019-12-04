@@ -173,7 +173,7 @@
                 </li>
               </ol>
               <a href="#" style="float: right;" class="btn btn-primary" type="submit">Simpan jawaban</a>
-              <a href="#" style="float: right;" class="btn btn-primary-outline" type="submit">Batalkan</a>
+              <a href="?modul=pilih_otomatis" style="float: right;" class="btn btn-primary-outline" type="submit">Kembali</a>
             </form>
           </div>
         </div>
