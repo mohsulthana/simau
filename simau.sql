@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2019 at 11:18 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.1.31
+-- Generation Time: Dec 04, 2019 at 09:28 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -71,7 +71,18 @@ CREATE TABLE `data_pribadi` (
 --
 
 INSERT INTO `data_pribadi` (`id_user`, `mendengkur`, `merokok`, `gelap`, `hewan`, `membaca`, `menulis`, `belajar`, `game`, `makan`, `hangout`) VALUES
-(13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+(13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+(15, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1),
+(16, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1),
+(17, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0),
+(18, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0),
+(19, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1),
+(20, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1),
+(21, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
+(22, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0),
+(23, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0),
+(24, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0),
+(25, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -245,9 +256,9 @@ CREATE TABLE `kamar` (
 --
 
 INSERT INTO `kamar` (`id_kamar`, `blok`, `lantai`, `nomor`, `kapasitas`, `jenis_kelamin`) VALUES
-(1, 'A', 1, 1, 1, 'Laki-laki'),
+(1, 'A', 1, 1, 0, 'Laki-laki'),
 (2, 'B', 1, 1, 1, 'Laki-laki'),
-(3, 'A', 1, 2, 1, 'Laki-laki'),
+(3, 'A', 1, 2, 0, 'Laki-laki'),
 (4, 'B', 1, 2, 2, 'Laki-laki'),
 (5, 'A', 1, 1, 2, 'Perempuan'),
 (6, 'A', 1, 2, 2, 'Perempuan'),
@@ -369,7 +380,9 @@ CREATE TABLE `temp_kamar_sewa` (
 --
 
 INSERT INTO `temp_kamar_sewa` (`id_temp`, `id_kamar`, `id_user`, `tanggal_tempa`, `status_sewa`) VALUES
-(1, 1, 4, '2019-11-19', 'Menempa');
+(1, 1, 4, '2019-11-19', 'Menempa'),
+(2, 3, 13, '2019-12-03', 'Menempa'),
+(3, 1, 13, '2019-12-03', 'Menempa');
 
 -- --------------------------------------------------------
 
@@ -411,11 +424,22 @@ INSERT INTO `user` (`id_user`, `nim`, `nama`, `jenis_kelamin`, `email`, `fakulta
 (7, '09031181520019', 'ridwan', '', 'seasroaring@gmail.com', '', '', 'K7WM69MQ', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
 (8, '090312736237', 'rita', 'Perempuan', 'ridwanariana4@gmail.com', 'Keguruan dan Ilmu Pendidikan', 'Pendidikan Sejarah', 'wow', 'islam', 'jln. landrat', 'A', '081374938273', 'sukinem', '081347483927', '../assets/foto_user/defaul.png', 'mahasiswa', 'lengkap', '1997-06-12'),
 (9, '09031381520083', 'M. Aziz Kurniawan', 'Laki-laki', 'azizknw97@gmail.com', 'Hukum', 'Ilmu Hukum', 'katakuri', 'islam', 'kjhibi', 'A', '080808', 'ufttycy', 'nhgcghc', '../assets/foto_user/defaul.png', 'mahasiswa', 'Penyewa', '2019-11-30'),
-(10, '987654321', 'DERDI KURNIAWAN', '', 'derdi.9798@gmail.com', '', '', '6B6Z1P3V', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(10, '987654321', 'DERDI KURNIAWAN', 'Laki-laki', 'derdi.9798@gmail.com', 'Ekonomi', 'Manajemen', '6B6Z1P3V', 'islam', 'asd', 'A', '123', 'asd', '11', '../assets/foto_user/defaul.png', 'mahasiswa', 'lengkap', '2019-12-03'),
 (11, '1', 'hanum', 'Laki-laki', 'azizknw97@gmail.com', 'Hukum', 'Ilmu Hukum', 'K8WEIEN8', 'kong fu chu', 'kebun bunga', 'O', '11', 'desmawan', 'sultana', '../assets/foto_user/defaul.png', 'mahasiswa', 'Penyewa', '2019-11-02'),
 (12, '234', 'okky', 'Laki-laki', 'azizknw97@gmail.com', 'Hukum', 'Ilmu Hukum', 'MACLZFEV', 'kristen', 'fafsa', 'A', '43242', 'sgsggdgews', 'fdsgs', '../assets/foto_user/defaul.png', 'mahasiswa', 'lengkap', '2019-11-08'),
-(13, '0902', 'sultan', '', 'sultan@gmail.com', '', '', 'TSI4UNRF', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
-(14, '0902', 'sultan', 'Laki-laki', 'muhammadsultana@outlook.com', 'Ekonomi', 'Manajemen', '5ADMOL9N', 'buddha', 'ssdgsdf', 'A', 'sdfgsdfg', 'dsfgsdfg', 'sdfgsdg', '../assets/foto_user/defaul.png', 'mahasiswa', 'lengkap', '2019-11-12');
+(13, '0902', 'sultanaa', 'Laki-laki', 'sultan@gmail.com', 'Ekonomi', 'Manajemen', 'TSI4UNRF', 'islam', 'aceh keras', 'A', '+62', 'bapakkau', '+1', '../assets/foto_user/defaul.png', 'mahasiswa', 'lengkap', '2019-12-25'),
+(14, '0902', 'sultan', 'Laki-laki', 'muhammadsultana@outlook.com', 'Ekonomi', 'Manajemen', '5ADMOL9N', 'buddha', 'ssdgsdf', 'A', 'sdfgsdfg', 'dsfgsdfg', 'sdfgsdg', '../assets/foto_user/defaul.png', 'mahasiswa', 'lengkap', '2019-11-12'),
+(15, '000', 'tes1', '', 'tes1@gmail.com', '', '', 'A5MV7EJR', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(16, '001', 'tes1', '', 'tes1@gmail.com', '', '', 'A5MV7EJR', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(17, '002', 'tes1', '', 'tes1@gmail.com', '', '', 'A5MV7EJR', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(18, '003', 'tes1', '', 'tes1@gmail.com', '', '', 'A5MV7EJR', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(19, '004', 'tes1', '', 'tes1@gmail.com', '', '', 'A5MV7EJR', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(20, '005', 'tes1', '', 'tes1@gmail.com', '', '', 'A5MV7EJR', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(21, '006', 'tes1', '', 'tes1@gmail.com', '', '', 'A5MV7EJR', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(22, '007', 'tes1', '', 'tes1@gmail.com', '', '', 'A5MV7EJR', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(23, '008', 'tes1', '', 'tes1@gmail.com', '', '', 'A5MV7EJR', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(24, '009', 'tes1', '', 'tes1@gmail.com', '', '', 'A5MV7EJR', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00'),
+(25, '010', 'tes1', '', 'tes1@gmail.com', '', '', 'A5MV7EJR', '', '', '', '', '', '', '../assets/foto_user/defaul.png', 'mahasiswa', 'belum lengkap', '0000-00-00');
 
 --
 -- Indexes for dumped tables
@@ -561,13 +585,13 @@ ALTER TABLE `pindah_kamar`
 -- AUTO_INCREMENT for table `temp_kamar_sewa`
 --
 ALTER TABLE `temp_kamar_sewa`
-  MODIFY `id_temp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_temp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for dumped tables

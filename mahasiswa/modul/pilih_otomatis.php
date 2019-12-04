@@ -64,7 +64,7 @@
                 <li>
                   <p>Apakah anda tidak masalah jika teman sekamar Anda mendengkur?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_mendengkur" name="mendengkur" value="true" class="custom-control-input" selected>
+                    <input type="radio" id="ya_mendengkur" name="mendengkur" value="true" class="custom-control-input">
                     <label class="custom-control-label" for="ya_mendengkur">Ya, tidak masalah.</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
