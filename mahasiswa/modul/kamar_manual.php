@@ -1,4 +1,29 @@
 <?php
+// SIMPAN JAWABAN DATA PRIBADI
+if (isset($_POST['data_pribadi'])) {
+  $data = [
+    'mendengkur'  => $_POST['mendengkur'],
+    'merokok'     => $_POST['merokok'],
+    'gelap'       => $_POST['gelap'],
+    'hewan'       => $_POST['hewan'],
+    'membaca'     => $_POST['membaca'],
+    'menulis'     => $_POST['menulis'],
+    'belajar'     => $_POST['belajar'],
+    'game'        => $_POST['game'],
+    'makan'       => $_POST['makan'],
+    'hangout'     => $_POST['hangout']
+  ];
+  $id = $_SESSION['id_user'];
+  
+  $sql = "INSERT INTO data_pribadi (id_user, mendengkur, merokok, gelap, hewan, membaca, menulis, belajar, game, makan, hangout) VALUES ('" . $id ."','" . $_POST['mendengkur'] . "', '" . $_POST['merokok'] . "', '" . $_POST['gelap'] . "', '" . $_POST['hewan'] . "', '" . $_POST['membaca'] ."', '" . $_POST['menulis'] ."', '" . $_POST['belajar'] . "', '" . $_POST['game'] . "', '" . $_POST['makan'] . "', '" . $_POST['hangout'] . "')";
+  if (mysqli_query($connect, $sql)) {
+    echo "<script>alert('Data berhasil ditambah')</script>";
+
+  } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn); exit;
+  }
+}
+
 // validate data pribadi
 $id = $_SESSION['id_user'];
 $data_pribadi = "SELECT data_pribadi.id_user FROM data_pribadi INNER JOIN user ON data_pribadi.id_user = $id";

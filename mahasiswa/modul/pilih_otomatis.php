@@ -59,7 +59,7 @@
         <div class="card mt-5">
           <h5 class="card-header">Pertanyaan rekomendasi</h5>
           <div class="card-body">
-            <form action="" method="POST">
+            <form action="?modul=cosim" method="POST">
               <ol>
                 <li>
                   <p>Apakah anda tidak masalah jika teman sekamar Anda mendengkur?</p>
@@ -174,7 +174,7 @@
               </ol>
               <a href="?modul=data_pribadi" style="float: right;" class="btn btn-primary" type="submit">Lanjut ke data pribadi</a>
               <a href="#" style="float: right;" class="btn btn-primary-outline" type="submit">Batalkan</a>
-              <input style="float: right;" class="btn btn-primary" type="submit" value="get recommend" formaction="?modul=cosim" />
+              <button style="float: right;" class="btn btn-primary" type="submit" value="get_recommend" formaction="?modul=cosim">Get Recommend</button>
             </form>
           </div>
         </div>

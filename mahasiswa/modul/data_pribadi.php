@@ -59,121 +59,121 @@
         <div class="card mt-5">
           <h5 class="card-header">Pertanyaan data pribadi</h5>
           <div class="card-body">
-            <form action="">
+            <form action="?modul=kamar_manual" method="POST">
               <ol>
                 <li>
                   <p>Apakah anda ketika tidur mendengkur?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_mendengkur" name="mendengkur" value="true" class="custom-control-input">
+                    <input type="radio" id="ya_mendengkur" name="mendengkur" value="1" class="custom-control-input">
                     <label class="custom-control-label" for="ya_mendengkur">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="tidak_mendengkur" name="mendengkur" value="false" class="custom-control-input">
+                    <input type="radio" id="tidak_mendengkur" name="mendengkur" value="0" class="custom-control-input">
                     <label class="custom-control-label" for="tidak_mendengkur">Tidak</label>
                   </div>
                 </li>
                 <li>
                   <p>Apakah anda adalah seorang perokok?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_merokok" name="merokok" value="true" class="custom-control-input">
+                    <input type="radio" id="ya_merokok" name="merokok" value="1" class="custom-control-input">
                     <label class="custom-control-label" for="ya_merokok">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="tidak_merokok" name="merokok" value="false" class="custom-control-input">
+                    <input type="radio" id="tidak_merokok" name="merokok" value="0" class="custom-control-input">
                     <label class="custom-control-label" for="tidak_merokok">Tidak</label>
                   </div>
                 </li>
                 <li>
                   <p>Apakah anda tidur dalam keadaan lampu tidur yang gelap?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_gelap" name="gelap" value="true" class="custom-control-input">
+                    <input type="radio" id="ya_gelap" name="gelap" value="1" class="custom-control-input">
                     <label class="custom-control-label" for="ya_gelap">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="tidak_gelap" name="gelap" value="true" class="custom-control-input">
+                    <input type="radio" id="tidak_gelap" name="gelap" value="0" class="custom-control-input">
                     <label class="custom-control-label" for="tidak_gelap">Tidak</label>
                   </div>
                 </li>
                 <li>
                   <p>Apakah anda menyukai hewan peliharaan (kucing, anjing dll)?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_peliharaan" name="peliharaan" value="true" class="custom-control-input">
+                    <input type="radio" id="ya_peliharaan" name="peliharaan" value="1" class="custom-control-input">
                     <label class="custom-control-label" for="ya_peliharaan">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="tidak_peliharaan" name="peliharaan" value="false" class="custom-control-input">
+                    <input type="radio" id="tidak_peliharaan" name="peliharaan" value="0" class="custom-control-input">
                     <label class="custom-control-label" for="tidak_peliharaan">Tidak</label>
                   </div>
                 </li>
                 <li>
                   <p>Apakah anda memiliki hobi membaca?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_membaca" name="membaca" value="true" class="custom-control-input">
+                    <input type="radio" id="ya_membaca" name="membaca" value="1" class="custom-control-input">
                     <label class="custom-control-label" for="ya_membaca">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="tidak_membaca" name="membaca" value="false" class="custom-control-input">
+                    <input type="radio" id="tidak_membaca" name="membaca" value="0" class="custom-control-input">
                     <label class="custom-control-label" for="tidak_membaca">Tidak</label>
                   </div>
                 </li>
                 <li>
                   <p>Apakah anda memiliki hobi menulis (karya tulis, cerpen dan lain-lain)?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_menulis" name="menulis" value="true" class="custom-control-input">
+                    <input type="radio" id="ya_menulis" name="menulis" value="1" class="custom-control-input">
                     <label class="custom-control-label" for="ya_menulis">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="tidak_menulis" name="menulis" value="false" class="custom-control-input">
+                    <input type="radio" id="tidak_menulis" name="menulis" value="0" class="custom-control-input">
                     <label class="custom-control-label" for="tidak_menulis">Tidak</label>
                   </div>
                 </li>
                 <li>
                   <p>Apakah anda adalah orang yang suka belajar bersama?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_belajar" name="belajar" value="true" class="custom-control-input">
+                    <input type="radio" id="ya_belajar" name="belajar" value="1" class="custom-control-input">
                     <label class="custom-control-label" for="ya_belajar">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="tidak_belajar" name="belajar" value="false" class="custom-control-input">
+                    <input type="radio" id="tidak_belajar" name="belajar" value="0" class="custom-control-input">
                     <label class="custom-control-label" for="tidak_belajar">Tidak</label>
                   </div>
                 </li>
                 <li>
                   <p>Apakah anda senang bermain game (game online maupun offline) bersama?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_game" name="game" value="true" class="custom-control-input">
+                    <input type="radio" id="ya_game" name="game" value="1" class="custom-control-input">
                     <label class="custom-control-label" for="ya_game">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="tidak_game" name="game" value="false" class="custom-control-input">
+                    <input type="radio" id="tidak_game" name="game" value="0" class="custom-control-input">
                     <label class="custom-control-label" for="tidak_game">Tidak</label>
                   </div>
                 </li>
                 <li>
                   <p>Apakah anda suka makan bersama?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_makan" name="makan" value="true" class="custom-control-input">
+                    <input type="radio" id="ya_makan" name="makan" value="1" class="custom-control-input">
                     <label class="custom-control-label" for="ya_makan">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="tidak_makan" name="makan" value="false" class="custom-control-input">
+                    <input type="radio" id="tidak_makan" name="makan" value="0" class="custom-control-input">
                     <label class="custom-control-label" for="tidak_makan">Tidak</label>
                   </div>
                 </li>
                 <li>
                   <p>Apakah anda suka berjalan- jalan (hangout) bersama?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_hangout" name="hangout" value="true" class="custom-control-input">
+                    <input type="radio" id="ya_hangout" name="hangout" value="1" class="custom-control-input" required>
                     <label class="custom-control-label" for="ya_hangout">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="tidak_hangout" name="hangout" value="false" class="custom-control-input">
+                    <input type="radio" id="tidak_hangout" name="hangout" value="0" class="custom-control-input">
                     <label class="custom-control-label" for="tidak_hangout">Tidak</label>
                   </div>
                 </li>
               </ol>
-              <a href="#" style="float: right;" class="btn btn-primary" type="submit">Simpan jawaban</a>
-              <a href="?modul=pilih_otomatis" style="float: right;" class="btn btn-primary-outline" type="submit">Kembali</a>
+              <button style="float: right;" value="true" name="data_pribadi" class="btn btn-primary" type="submit">Simpan jawaban</button>
+              <a href="?modul=pilih_otomatis" style="float: right;" class="btn btn-primary-outline">Kembali</a>
             </form>
           </div>
         </div>
