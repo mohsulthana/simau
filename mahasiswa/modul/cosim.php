@@ -1,6 +1,18 @@
 <?php
+
+// CEK APAKAH IA SUDAH MEMILIKI KAMAR ATAU BELUM
+$id = $_SESSION['id_user'];
+
+$kamar = "SELECT * FROM kamar_sewa WHERE id_user='".$id."'";
+$sql = mysqli_query($connect, $kamar);
+$arr = mysqli_fetch_array($sql);
+if (isset($arr)) {
+  echo "<script>alert('Anda sudah memiliki kamar')</script>";
+  echo "<script>location.href = 'http://localhost/simau/mahasiswa/index.php'</script>";
+  exit;
+}
+
 	// CEK APAKAH ADA DATA PRIBADI
-	$id = $_SESSION['id_user'];
 	$data_pribadi = "SELECT * from data_pribadi where id_user='$id'";
 	$sql = mysqli_query($connect, $data_pribadi);
 	$arr = mysqli_fetch_all($sql);
@@ -243,8 +255,18 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="card mt-5">
-          <h5 class="card-header">Recommended People</h5>
+          <h5 class="card-header">Rekomendasi kamar</h5>
           <div class="card-body">
+					<?php
+          $sql1="SELECT * FROM kamar_sewa join kamar on kamar_sewa.id_kamar=kamar.id_kamar join user on kamar_sewa.id_user=user.id_user where kamar.id_kamar='$id'";
+          $query1=mysqli_query($connect,$sql1);
+					while($data1 = mysqli_fetch_array($query1)){ ?>
+						<input type="hidden" name="id_kamar" value="<?php echo $data1['id_kamar'] ?>">
+						<input type="hidden" name="id_user" value="<?php echo $_SESSION['id_user'] ?>">
+						<input type="hidden" name="tanggal_tempa" value="<?php echo date('Y-m-d'); ?>">
+					<?php
+					$id=$data1['id_kamar'];
+				} ?>
 			<table class="table">
 				<thead>
 					<tr>
@@ -252,6 +274,7 @@
 						<th scope="col">Nama</th>
 						<th scope="col">Kemiripan</th>
 						<th scope="col">Status</th>
+						<th scope="col">Booking</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -262,6 +285,9 @@
 						<td><?= $value->nama ?></td>
 						<td><?= $value->similarity ?></td>
 						<td><?= $value->status ?></td>
+						<td>
+							<input type="submit" value="Pilih Kamar" class="btn btn-success" name="booking"/>
+						</td>
 					</tr>
 				<?php $count++;} ?>
 				</tbody>
@@ -273,3 +299,21 @@
   </div>
 </body>
 </html>
+
+<?php
+if(isset($_POST['tempa'])){
+	$idu=$id;
+	$idk=$_POST['id_kamar'];
+	$tempa=$_POST['tanggal_tempa'];
+	$status=$_POST['status_sewa'];
+	
+	$query1="INSERT INTO temp_kamar_sewa(id_kamar,id_user,tanggal_tempa,status_sewa) VALUES('$idk','$idu','$tempa','$status')";
+	$hasil = mysqli_query($connect,$query1);
+	if($hasil) 
+		{
+			$sql1="UPDATE kamar set kapasitas=kapasitas-1 where id_kamar='$idk'";
+			$sql2=mysqli_query($connect,$sql1);
+			echo "<script>alert('Kamar Telah DiBooking, Silahkan Melakukan Pembayaran...');document.location='index.php'</script>";      
+		}
+	}
+?>

@@ -114,8 +114,8 @@ while($data1 = mysqli_fetch_array($query1)){
                   <?php } ?> 
                   name="tempa">
                   <?php } else {?>
-                   <input type="submit" value="Pilih Kamar" 
-                   <?php if($data['jenis_kelamin']=="Laki-laki"){ ?>
+                  <input type="submit" value="Pilih Kamar"
+                  <?php if($data['jenis_kelamin']=="Laki-laki"){ ?>
                   class="btn btn-success"
                   <?php } else {?>
                   class="btn btn-danger"  
@@ -204,6 +204,5 @@ if($hasil)
     $sql2=mysqli_query($connect,$sql1);
     echo "<script>alert('Kamar Telah DiBooking, Silahkan Melakukan Pembayaran...');document.location='index.php'</script>";      
   }
-
 }
 ?>
