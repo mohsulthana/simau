@@ -138,8 +138,8 @@
 	usort($data_obj, function($a, $b) {return ($a->similarity < $b->similarity);});
 	
 	// OPSIONAL JIKA INGIN DIBATASI JUMLAH ORANG YANG DITAMPILKAN
-	// $data = array_slice($data_obj, 0, 5);
-	$data = $data_obj;
+	$data = array_slice($data_obj, 0, 5);
+	// $data = $data_obj;
 
 	// AMBIL DATA TABLE USER
 	$query="SELECT * from user";
@@ -178,15 +178,10 @@
 		// JIKA USER TIDAK ADA DI LIST KAMAR SEWA
 		// ARTINYA BELOM SEWA KAMAR / PILIH KAMAR
 		if(!in_array($value->id, $arr_user))
-			$value->status = "belum sewa";
+			$value->status = "Belum disewa";
 		else
-			$value->status = "sudah sewa";
+			$value->status = "Sudah disewa";
 	}
-?>
-
-<?php
-  
-
 ?>
 
 <html>

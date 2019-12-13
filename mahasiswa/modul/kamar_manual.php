@@ -1,4 +1,18 @@
 <?php
+// CEK APAKAH IA SUDAH MEMILIKI KAMAR ATAU BELUM
+$id = $_SESSION['id_user'];
+
+$kamar = "SELECT * FROM kamar_sewa WHERE id_user='".$id."'";
+$sql = mysqli_query($connect, $kamar);
+$arr = mysqli_fetch_array($sql);
+if (isset($arr)) {
+  echo "<script>alert('Anda sudah memiliki kamar')</script>";
+  echo "<script>location.href = 'http://localhost/simau/mahasiswa/index.php'</script>";
+  exit;
+}
+
+
+
 // SIMPAN JAWABAN DATA PRIBADI
 if (isset($_POST['data_pribadi'])) {
   $data = [
@@ -13,12 +27,11 @@ if (isset($_POST['data_pribadi'])) {
     'makan'       => $_POST['makan'],
     'hangout'     => $_POST['hangout']
   ];
-  $id = $_SESSION['id_user'];
+
   
   $sql = "INSERT INTO data_pribadi (id_user, mendengkur, merokok, gelap, hewan, membaca, menulis, belajar, game, makan, hangout) VALUES ('" . $id ."','" . $_POST['mendengkur'] . "', '" . $_POST['merokok'] . "', '" . $_POST['gelap'] . "', '" . $_POST['hewan'] . "', '" . $_POST['membaca'] ."', '" . $_POST['menulis'] ."', '" . $_POST['belajar'] . "', '" . $_POST['game'] . "', '" . $_POST['makan'] . "', '" . $_POST['hangout'] . "')";
   if (mysqli_query($connect, $sql)) {
     echo "<script>alert('Data berhasil ditambah')</script>";
-
   } else {
       echo "Error: " . $sql . "<br>" . mysqli_error($conn); exit;
   }
@@ -36,9 +49,10 @@ if ($arr === NULL) {
 ?>
 
 
-<h4>Pilih Kamar Secara Manual</h4>
-<h5 style="color: red">*Note : Jika Kapasitas Penuh Namun Tidak Ada Info Kamar, Maka Kapasitas Tersebut Sedang Dibooking User Lain...</h5>
-<br/>
+<div class="container m-3">
+  <h4>Pilih Kamar Secara Manual</h4>
+  <h5 style="color: red">*Note : Jika Kapasitas Penuh Namun Tidak Ada Info Kamar, Maka Kapasitas Tersebut Sedang Dibooking User Lain...</h5>
+</div>
 
 <div class="row">
 <?php

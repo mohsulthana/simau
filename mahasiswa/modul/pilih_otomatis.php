@@ -1,6 +1,18 @@
 <?php  
-  // validate data pribadi
+
+// CEK APAKAH IA SUDAH MEMILIKI KAMAR ATAU BELUM
 $id = $_SESSION['id_user'];
+
+$kamar = "SELECT * FROM kamar_sewa WHERE id_user='".$id."'";
+$sql = mysqli_query($connect, $kamar);
+$arr = mysqli_fetch_array($sql);
+if (isset($arr)) {
+  echo "<script>alert('Anda sudah memiliki kamar')</script>";
+  echo "<script>location.href = 'http://localhost/simau/mahasiswa/index.php'</script>";
+  exit;
+}
+
+  // validate data pribadi
 $data_pribadi = "SELECT * from data_pribadi where id_user='$id'";
 $sql = mysqli_query($connect, $data_pribadi);
 $arr = mysqli_fetch_all($sql);
