@@ -1,3 +1,21 @@
+<?php  
+  // validate data pribadi
+$id = $_SESSION['id_user'];
+$data_pribadi = "SELECT * from data_pribadi where id_user='$id'";
+$sql = mysqli_query($connect, $data_pribadi);
+$arr = mysqli_fetch_all($sql);
+
+if (count($arr) == 1) {
+  echo "<script>
+    location.href = 'http://localhost/simau/mahasiswa/index.php?modul=cosim'
+  </script>";
+}
+else{
+  echo "<script>
+    location.href = 'http://localhost/simau/mahasiswa/index.php?modul=data_pribadi'
+  </script>";
+}
+?>
 <html>
 <head>
   <meta charset="utf-8">

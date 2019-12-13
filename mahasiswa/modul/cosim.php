@@ -1,37 +1,91 @@
 <?php
-
-	// NILAI $_POST DARI FORM
-	$post_arr = [
-		$_POST["mendengkur"],		
-		$_POST["merokok"],		
-		$_POST["gelap"],
-		$_POST["peliharaan"],		
-		$_POST["membaca"],		
-		$_POST["menulis"],	
-		$_POST["belajar"],
-		$_POST["game"],
-		$_POST["makan"],
-		$_POST["hangout"]
-	];
-			
-	// CONVERT NILAI $_POST JADI 0 DAN 1 JIKA FALSE DAN TRUE
-	$raw = [];
-	foreach ($post_arr as $key => $value) {
-		if($value == 'true')
-			$raw[$key] = 1;
-		else
-			$raw[$key] = 0;
+	// CEK APAKAH ADA DATA PRIBADI
+	$id = $_SESSION['id_user'];
+	$data_pribadi = "SELECT * from data_pribadi where id_user='$id'";
+	$sql = mysqli_query($connect, $data_pribadi);
+	$arr = mysqli_fetch_all($sql);
+	
+	// DATA PRIBADI ADA, DAN TEPAT 1
+	if(count($arr) == 1)
+	{
+		// RAW ADALAH DATA UNTUK PROSES COSIM
+		// PRA-PROSES RAW, KELUAR NILAI ARR DARI ARRAY
+		$raw = [];
+		foreach ($arr as $value) {
+			foreach ($value as $key => $value2) {
+				$raw[$key] = $value2;
+			}
+		}
 	}
+	// DATA PRIBADI BELUM ADA, MAKA REDIRECT KE MODUL DATA PRIBADI
+	else if(count($arr) == 0)
+	{
+		// BEGIN DUMP 1
+		// // NILAI $_POST DARI FORM
+		// $post_arr = [
+		// 	$_POST["mendengkur"],
+		// 	$_POST["merokok"],
+		// 	$_POST["gelap"],
+		// 	$_POST["peliharaan"],
+		// 	$_POST["membaca"],
+		// 	$_POST["menulis"],
+		// 	$_POST["belajar"],
+		// 	$_POST["game"],
+		// 	$_POST["makan"],
+		// 	$_POST["hangout"]
+		// ];
+
+		// // CONVERT NILAI $_POST JADI 0 DAN 1 JIKA FALSE DAN TRUE
+		// $raw = [];
+		// foreach ($post_arr as $key => $value) {
+		// 	if($value == 'true')
+		// 		$raw[$key] = 1;
+		// 	else
+		// 		$raw[$key] = 0;
+		// }
+		// END DUMP 1
+
+		// BEGIN DUMP 2
+		
+		// if(
+		// 	!isset($_POST["mendengkur"]) 	||
+		// 	!isset($_POST["merokok"]) 		||
+		// 	!isset($_POST["gelap"]) 		||
+		// 	!isset($_POST["peliharaan"]) 	||
+		// 	!isset($_POST["membaca"]) 		||
+		// 	!isset($_POST["menulis"]) 		||
+		// 	!isset($_POST["belajar"]) 		||
+		// 	!isset($_POST["game"]) 			||
+		// 	!isset($_POST["makan"]) 		||
+		// 	!isset($_POST["hangout"])
+		// )
+		// END DUMP 2
+		$url = '?modul=data_pribadi';
+		echo "<script>location.href = '$url'</script>";
+	}
+	
 	// AMBIL SELURUH DATA PRIBADI DI DATABASE KECUALI USER SEKARANG
+	// DATA REKOMENDASI SESUAI JENIS KELAMIN USER SEKARANG
 	include"../koneksi.php";
 	$idu=$_SESSION['id_user'];
-	$query="SELECT * from data_pribadi INNER JOIN user ON user.id_user = data_pribadi.id_user where data_pribadi.id_user!='$idu'";
+	$jku=$_SESSION['jenis_kelamin'];
+	
+	// BEGIN DUMP 3
+	// "SELECT * from data_pribadi where id_user!='$idu'";
+	// END DUMP 3
+	
+	$query= "select data_pribadi.* from user
+	inner join data_pribadi on data_pribadi.id_user = user.id_user
+	where user.id_user!='$idu' and user.jenis_kelamin='$jku'";
+
 	$data_query=mysqli_query($connect,$query);
-	$data	=	mysqli_fetch_assoc($data_query);
-
+	$data=mysqli_fetch_all($data_query);
+	
+	// BEGIN DUMP 4
 	// TAMBAHKAN ID USER KE AWAL DATA RAW
-	array_unshift($raw, $idu);
-
+	// array_unshift($raw, $idu);
+	// END DUMP 4
+	
 	// COSINE SIMILARITY
 	function cosim($arr1, $arr2)
 	{
@@ -40,7 +94,9 @@
 		$sum3 = 0;
 
 		foreach ($arr1 as $key => $value) {
-			if($key == 0) // INDEX 0 = ID, TIDAK PERLU DIHITUNG
+			// INDEX 0 = ID ROW, TIDAK PERLU DIHITUNG
+			// INDEX 1 = ID USER, TIDAK PERLU DIHITUNG
+			if($key == 0 || $key == 1) 
 				continue;
 			else
 			{
@@ -52,11 +108,11 @@
 
 		return $sum1 / (sqrt($sum2) * sqrt($sum3));
 	}
-
 	// HITUNG SIMILARITY
 	$similar = [];
-
+	
 	foreach ($data as $key => $value) {
+		
 		$similar[$key] = cosim($value,$raw);
 	}
 
@@ -73,15 +129,59 @@
 
 	$data_obj = [];
 	foreach ($data as $key => $value) {
-		$data_obj[$key] = (Object)['id' => $value[0]];
+		// INDEX 1 ADALAH ID USER, SEDANG INDEX 0 ADALAH ID ROW
+		$data_obj[$key] = (Object)['id' => $value[1]]; 
 		$data_obj[$key]->similarity = number_format((float)$similar[$key]*100, 2, '.', '').'%';
 	}
 
-	echo "<pre>";
+	// SORT BESAR KE KECIL, TERHADAP SIMILARITY
 	usort($data_obj, function($a, $b) {return ($a->similarity < $b->similarity);});
-	$data = array_slice($data_obj, 0, 5);
-	// print_r($data); exit;
-	echo "</pre>";
+	
+	// OPSIONAL JIKA INGIN DIBATASI JUMLAH ORANG YANG DITAMPILKAN
+	// $data = array_slice($data_obj, 0, 5);
+	$data = $data_obj;
+
+	// AMBIL DATA TABLE USER
+	$query="SELECT * from user";
+	$data_query=mysqli_query($connect,$query);
+	$user=mysqli_fetch_all($data_query,MYSQLI_ASSOC);
+
+	// MASUKKIN NAMA USER KE VARIABEL $DATA_OBJ
+	foreach ($data as $key => $value) {
+		foreach ($user as $key_user => $value_user) {
+			if($value_user['id_user'] == $value->id)
+			{
+				$data[$key]->nama = $value_user['nama'];
+			}
+		}
+	}
+
+	// AMBIL DATA KAMAR DARI TABLE KAMAR SEWA
+	$query="SELECT distinct(id_kamar) from kamar_sewa";
+	$data_query=mysqli_query($connect,$query);
+	$list_kamar=mysqli_fetch_all($data_query,MYSQLI_ASSOC);
+
+	$arr_kamar = [];
+	foreach ($list_kamar as $key => $value) {
+		$arr_kamar[$key] = $value['id_kamar'];
+	}
+	// AMBIL DATA USER DARI TABLE KAMAR SEWA
+	$query="SELECT distinct(id_user) from kamar_sewa";
+	$data_query=mysqli_query($connect,$query);
+	$list_user=mysqli_fetch_all($data_query,MYSQLI_ASSOC);
+
+	$arr_user = [];
+	foreach ($list_user as $key => $value) {
+		$arr_user[$key] = $value['id_user'];
+	}
+	foreach ($data as $key => $value) {
+		// JIKA USER TIDAK ADA DI LIST KAMAR SEWA
+		// ARTINYA BELOM SEWA KAMAR / PILIH KAMAR
+		if(!in_array($value->id, $arr_user))
+			$value->status = "belum sewa";
+		else
+			$value->status = "sudah sewa";
+	}
 ?>
 
 <?php
@@ -148,26 +248,29 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="card mt-5">
-          <h5 class="card-header">Pertanyaan rekomendasi</h5>
+          <h5 class="card-header">Recommended People</h5>
           <div class="card-body">
-							<table class="table">
-								<thead>
-									<tr>
-										<th scope="col">#</th>
-										<th scope="col">Nama</th>
-										<th scope="col">Kemiripan</th>
-									</tr>
-								</thead>
-								<tbody>
-								<?php foreach($data as $key => $value) {?>
-									<tr>
-										<th scope="row">1</th>
-										<td><?= $value->nama ?></td>
-										<td><?= $value->similarity ?></td>
-									</tr>
-								<?php } ?>
-								</tbody>
-							</table>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nama</th>
+						<th scope="col">Kemiripan</th>
+						<th scope="col">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php $count = 1;
+				foreach($data as $key => $value) {?>
+					<tr>
+						<th scope="row"><?= $count ?></th>
+						<td><?= $value->nama ?></td>
+						<td><?= $value->similarity ?></td>
+						<td><?= $value->status ?></td>
+					</tr>
+				<?php $count++;} ?>
+				</tbody>
+			</table>
           </div>
         </div>
       </div>

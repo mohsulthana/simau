@@ -1,3 +1,19 @@
+<?php  
+
+  // CEK APAKAH ADA DATA PRIBADI
+  $id = $_SESSION['id_user'];
+  $data_pribadi = "SELECT * from data_pribadi where id_user='$id'";
+  $sql = mysqli_query($connect, $data_pribadi);
+  $arr = mysqli_fetch_all($sql);
+  if(count($arr) == 1)
+  {
+    echo "<script>
+      alert('Data pribadi sudah ada');
+      window.location.href = 'index.php';
+    </script>";
+  }
+?>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -97,11 +113,11 @@
                 <li>
                   <p>Apakah anda menyukai hewan peliharaan (kucing, anjing dll)?</p>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="ya_peliharaan" name="peliharaan" value="1" class="custom-control-input">
+                    <input type="radio" id="ya_peliharaan" name="hewan" value="1" class="custom-control-input">
                     <label class="custom-control-label" for="ya_peliharaan">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="tidak_peliharaan" name="peliharaan" value="0" class="custom-control-input">
+                    <input type="radio" id="tidak_peliharaan" name="hewan" value="0" class="custom-control-input">
                     <label class="custom-control-label" for="tidak_peliharaan">Tidak</label>
                   </div>
                 </li>
