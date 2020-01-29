@@ -7,7 +7,6 @@ $sql1=mysqli_query($connect,$query1);
 ?>
           <div class="card">
             <div class="card-header">
-            <a href="?modul=buat_kamar" class="btn btn-success fa fa-plus"> Buat Kamar</a>
               <h3 class="card-title">Data Kamar Apartemen UNSRI(Laki-laki)</h3><br/>
             
             </div>
@@ -30,8 +29,7 @@ $sql1=mysqli_query($connect,$query1);
                   <td><?php echo $data['lantai'] ?></td>
                   <td><?php echo $data['nomor'] ?></td>
                   <td><?php echo $data['kapasitas'] ?></td>
-                  <td><a href="?modul=edit_kamar&id_kamar=<?php echo $data['id_kamar'] ?>" class="btn btn-success fa fa-edit"> Edit Kamar</a>
-                    <a href="?modul=kelola_kamar&id_kamar=<?php echo $data['id_kamar'] ?>" class="btn btn-danger fa fa-trash"> Hapus Kamar</a>
+                  <td>
                     <?php if($data['kapasitas'] < 2){ ?>
                     <a href="?modul=lihat_penyewa&id_kamar=<?php echo $data['id_kamar'] ?>" class="btn btn-primary fa fa-eye"> Lihat Penyewa</a>
                   <?php } else {?>
@@ -79,9 +77,7 @@ $sql1=mysqli_query($connect,$query1);
                   <td><?php echo $data1['lantai'] ?></td>
                   <td><?php echo $data1['nomor'] ?></td>
                   <td><?php echo $data1['kapasitas'] ?></td>
-                  <td><a href="?modul=edit_kamar&id_kamar=<?php echo $data1['id_kamar'] ?>" class="btn btn-success fa fa-edit"> Edit Kamar</a>
-                    <a href="?modul=kelola_kamar&id_kamar=<?php echo $data1['id_kamar'] ?>" class="btn btn-danger fa fa-trash"> Hapus Kamar</a>
-                    <?php if($data1['kapasitas'] < 2){ ?>
+                  <td><?php if($data1['kapasitas'] < 2){ ?>
                     <a href="?modul=lihat_penyewa&id_kamar=<?php echo $data1['id_kamar'] ?>" class="btn btn-primary fa fa-eye"> Lihat Penyewa</a>
                   <?php } else {?>
 

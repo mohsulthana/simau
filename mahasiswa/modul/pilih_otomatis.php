@@ -8,9 +8,7 @@ $sql = mysqli_query($connect, $data_pribadi);
 $arr = mysqli_fetch_all($sql);
 
 if (count($arr) == 1) {
-  echo "<script>
-    location.href = 'http://localhost/simau/mahasiswa/index.php?modul=cosim'
-  </script>";
+  echo "<script>document.location='?modul=cosim'</script>";
 }
 else{
   echo "<script>

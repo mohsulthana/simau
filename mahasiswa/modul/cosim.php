@@ -81,14 +81,14 @@ if (isset($arr)) {
 	include"../koneksi.php";
 	$idu=$_SESSION['id_user'];
 	$jku=$_SESSION['jenis_kelamin'];
-	
+
 	// BEGIN DUMP 3
 	// "SELECT * from data_pribadi where id_user!='$idu'";
 	// END DUMP 3
 	
 	$query= "select data_pribadi.* from user
 	inner join data_pribadi on data_pribadi.id_user = user.id_user
-	where user.id_user!='$idu' and user.jenis_kelamin='$jku'";
+	where user.id_user!='$idu' and user.jenis_kelamin='$jku' and user.status='Penyewa'  ";
 
 	$data_query=mysqli_query($connect,$query);
 	$data=mysqli_fetch_all($data_query);
@@ -99,6 +99,9 @@ if (isset($arr)) {
 	// END DUMP 4
 	
 	// COSINE SIMILARITY
+
+	// $arr1 = data pribadi id pertama
+	// $arr2 = data pribadi id kedua
 	function cosim($arr1, $arr2)
 	{
 		$sum1 = 0;
@@ -117,16 +120,17 @@ if (isset($arr)) {
 				$sum3 += $arr2[$key] * $arr2[$key];	
 			}
 		}
-
+		// var_dump($sum1 / (sqrt($sum2) * sqrt($sum3))); exit;
 		return $sum1 / (sqrt($sum2) * sqrt($sum3));
 	}
+
 	// HITUNG SIMILARITY
-	$similar = [];
-	
+	// $data = nampung seluruh data pribadi
 	foreach ($data as $key => $value) {
 		
 		$similar[$key] = cosim($value,$raw);
 	}
+
 
 	// CARI NILAI SIMILARITY TERTINGGI
 	$max = -1*INF;
@@ -139,6 +143,8 @@ if (isset($arr)) {
 		}
 	}
 
+
+	// data_obj = data final setelah dihitung dan dicari tertinggi
 	$data_obj = [];
 	foreach ($data as $key => $value) {
 		// INDEX 1 ADALAH ID USER, SEDANG INDEX 0 ADALAH ID ROW
@@ -190,9 +196,9 @@ if (isset($arr)) {
 		// JIKA USER TIDAK ADA DI LIST KAMAR SEWA
 		// ARTINYA BELOM SEWA KAMAR / PILIH KAMAR
 		if(!in_array($value->id, $arr_user))
-			$value->status = "Belum disewa";
+			$value->status = "Belum menyewa";
 		else
-			$value->status = "Sudah disewa";
+			$value->status = "Sudah menyewa";
 	}
 ?>
 
@@ -257,36 +263,37 @@ if (isset($arr)) {
         <div class="card mt-5">
           <h5 class="card-header">Rekomendasi kamar</h5>
           <div class="card-body">
-					<?php
-          $sql1="SELECT * FROM kamar_sewa join kamar on kamar_sewa.id_kamar=kamar.id_kamar join user on kamar_sewa.id_user=user.id_user where kamar.id_kamar='$id'";
-          $query1=mysqli_query($connect,$sql1);
-					while($data1 = mysqli_fetch_array($query1)){ ?>
-						<input type="hidden" name="id_kamar" value="<?php echo $data1['id_kamar'] ?>">
-						<input type="hidden" name="id_user" value="<?php echo $_SESSION['id_user'] ?>">
-						<input type="hidden" name="tanggal_tempa" value="<?php echo date('Y-m-d'); ?>">
-					<?php
-					$id=$data1['id_kamar'];
-				} ?>
 			<table class="table">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">Nama</th>
-						<th scope="col">Kemiripan</th>
+						<th scope="col">Kecocokan</th>
 						<th scope="col">Status</th>
 						<th scope="col">Booking</th>
 					</tr>
 				</thead>
 				<tbody>
 				<?php $count = 1;
-				foreach($data as $key => $value) {?>
+				foreach($data as $key => $value) {
+					?>
+
 					<tr>
 						<th scope="row"><?= $count ?></th>
 						<td><?= $value->nama ?></td>
 						<td><?= $value->similarity ?></td>
 						<td><?= $value->status ?></td>
+						<?php
+						// nambahken id_kamar di $value->butuh id kamar si mpunya nama
+						?>
 						<td>
-							<input type="submit" value="Pilih Kamar" class="btn btn-success" name="booking"/>
+					<form method="post">
+					<input type="hidden" name="kamar" value="<?php echo $value->nama ?>">
+					<input type="hidden" name="id_user" value="<?php echo $_SESSION['id_user'] ?>">
+					<input type="hidden" name="tanggal_tempa" value="<?php echo date('Y-m-d'); ?>">
+					<input type="hidden" name="status_sewa" value="Menempa">	
+							<input type="submit" value="Pilih Kamar" class="btn btn-success" name="tempa"/>
+							</form>
 						</td>
 					</tr>
 				<?php $count++;} ?>
@@ -303,7 +310,19 @@ if (isset($arr)) {
 <?php
 if(isset($_POST['tempa'])){
 	$idu=$id;
-	$idk=$_POST['id_kamar'];
+	$idm=$_POST['kamar'];
+
+$x="SELECT * from user where nama='$idm'";
+$y=mysqli_query($connect,$x);
+$z=mysqli_fetch_array($y);
+
+$nam=$z['id_user'];
+	
+$a="SELECT * from kamar_sewa join kamar on kamar.id_kamar=kamar_sewa.id_kamar join user on kamar_sewa.id_user=user.id_user where kamar_sewa.id_user='$nam'";
+$b=mysqli_query($connect,$a);
+$c=mysqli_fetch_array($b);
+
+	$idk=$c['id_kamar'];
 	$tempa=$_POST['tanggal_tempa'];
 	$status=$_POST['status_sewa'];
 	
@@ -313,7 +332,11 @@ if(isset($_POST['tempa'])){
 		{
 			$sql1="UPDATE kamar set kapasitas=kapasitas-1 where id_kamar='$idk'";
 			$sql2=mysqli_query($connect,$sql1);
-			echo "<script>alert('Kamar Telah DiBooking, Silahkan Melakukan Pembayaran...');document.location='index.php'</script>";      
+			echo "<script>alert('Kamar Telah DiBooking, Silahkan Melakukan Pembayaran...');document.location='?modul=upload_bukti'</script>";      
 		}
+		else
+		{
+			mysqli_error($connect);
+		}	
 	}
 ?>

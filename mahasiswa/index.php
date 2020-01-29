@@ -91,7 +91,7 @@ $notif_perpanjang=intval($days);
       </li>
     </ul>
     <?php if($_SESSION['status'] == "belum lengkap"){ ?>
-    <span class="badge badge-danger">*Profil belum lengkap</span>
+    <span class="badge badge-danger">*Lengkapi profil anda terlebih dahulu sebelum memilih kamar</span>
     <?php } else { ?>
       <span class="badge badge-success">*Profil lengkap</span>
     <?php } ?> 
@@ -152,8 +152,8 @@ $notif_perpanjang=intval($days);
                 </a>
               </li> 
               <?php } else { ?>  
-          <?php if($_SESSION['status']=='Penyewa'){ ?>
-          <?php }?> 
+          <?php if($_SESSION['status']!='Penyewa'){ ?>
+
           <li class="nav-item has-treeview">
             <a href="?modul=profil" class="nav-link">
               <i class="nav-icon fa fa-home"></i>
@@ -177,6 +177,8 @@ $notif_perpanjang=intval($days);
               </li>
             </ul>
           </li>
+          <?php }?> 
+          
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-home"></i>
@@ -242,7 +244,7 @@ $notif_perpanjang=intval($days);
                 </a>
               </li>
           <li class="nav-item has-treeview">
-            <a href="index.php" class="nav-link">
+            <a href="?modul=cara_pesan" class="nav-link">
               <i class="nav-icon fa fa-book"></i>
                 <p>Cara Memesan Kamar</p>
                 </a>

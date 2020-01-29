@@ -8,7 +8,7 @@ include"acak.php";
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Splash &mdash; Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
+	<title>Buat Akun &mdash; SIMAU(Sistem Informasi Management Apartemen UNSRI)</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -105,6 +105,7 @@ include"acak.php";
 
 					<div class="row row-mt-15em">
 						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+							<img src="assets\system_tools\dist\img\UNSRI LOGO.png" width="100" height="100">
 							<span class="intro-text-small">Selamat Datang Di</span>
 							<h1>SISTEM INFORMASI APARTEMEN UNSRI</h1>	
 						</div>

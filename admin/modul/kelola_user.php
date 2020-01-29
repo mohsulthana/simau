@@ -7,6 +7,9 @@ $sql1=mysqli_query($connect,$query1);
 
 $query2="SELECT * from user where role='mahasiswa' AND status='Penyewa'";
 $sql2=mysqli_query($connect,$query2);
+
+$query3="SELECT * from user where role='mahasiswa' AND status='Berhenti'";
+$sql3=mysqli_query($connect,$query3);
 ?>
           <div class="card">
             <div class="card-header">
@@ -216,6 +219,85 @@ $sql2=mysqli_query($connect,$query2);
           </div>
           <!-- /.card -->
 
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Data Penghuni Apartemen UNSRI(Berhenti Menyewa)</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive">
+              <table id="example3" class="table table-bordered table-striped">
+                <thead>  
+                <tr>
+                  <th>Foto</th>
+                  <th>NIM</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Fakultas</th>
+                  <th>Jurusan</th>
+                  <th>Jenis Kelamin</th>
+                  <th>Agama</th>
+                  <th>Alamat</th>
+                  <th>Golongan Darah</th>
+                  <th>Nomor HP</th>
+                  <th>Orang Tua / Wali</th>
+                  <th>No HP Orang Tua / Wali</th>
+                  <th>Tanggal Lahir</th>
+                  <th>Password</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <?php while($data3=mysqli_fetch_array($sql3)){ ?>
+                <tr>
+                  <td><a href="<?php echo $data3['foto_profil'] ?>" target="blank"><img src="<?php echo $data3['foto_profil'] ?>" width="100px" height="100px"></a></td>
+                  <td><?php echo $data3['nim'] ?></td>
+                  <td><?php echo $data3['nama'] ?></td>
+                  <td><?php echo $data3['email'] ?></td>
+                  <td><?php echo $data3['fakultas'] ?></td>
+                  <td><?php echo $data3['jurusan'] ?></td>
+                  <td><?php echo $data3['jenis_kelamin'] ?></td>
+                  <td><?php echo $data3['agama'] ?></td>
+                  <td><?php echo $data3['alamat'] ?></td>
+                  <td><?php echo $data3['gol_dar'] ?></td>
+                  <td><?php echo $data3['no_hp'] ?></td>
+                  <td><?php echo $data3['ortu_wali'] ?></td>
+                  <td><?php echo $data3['no_hp_ortu'] ?></td>
+                  <td><?php echo $data3['tanggal_lahir'] ?></td>
+                  <td><?php echo $data3['password'] ?></td>
+                  <td><?php echo $data3['status'] ?></td>
+                  <td><a href="?modul=edit_user&id_user=<?php echo $data3['id_user'] ?>" class="btn btn-success fa fa-edit"> Edit User</a>
+                    </td>
+                </tr>
+                <?php } ?>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Foto</th>
+                  <th>NIM</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Fakultas</th>
+                  <th>Jurusan</th>
+                  <th>Jenis Kelamin</th>
+                  <th>Agama</th>
+                  <th>Alamat</th>
+                  <th>Golongan Darah</th>
+                  <th>Nomor HP</th>
+                  <th>Orang Tua / Wali</th>
+                  <th>No HP Orang Tua / Wali</th>
+                  <th>Tanggal Lahir</th>
+                  <th>Password</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
 <?php
 if(isset($_GET['id_user'])){
 $idu=$_GET['id_user'];
@@ -251,11 +333,10 @@ $mail->isHTML(true);
 
 // Konten/isi email
 $mailContent = "
-<h1>Terima Kasih Atas Pendaftarannya, NIM yang anda inputkan telah sesuai..</h1>
-<p>Ini Adalah Password Akun anda :</p>
+<h1>ANDA TELAH TERDAFTAR, SILAHKAN GUNAKAN PASSWORD DIBAWAH INI</h1>
+<p>PASSWORD ANDA :</p>
 <p>$password</p>
-<p>Jagalah Kerahasiaan Akun Anda...</p>
-<h3>Salam Hangat Dari Apartemen UNSRI : ) </h3>
+<p>JAGA KERAHASIAN DAN SEGERA GANTI DENGAN PASSWORD YANG BARU</p>
 </body>";
 $mail->Body = $mailContent;
 

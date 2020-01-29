@@ -1,13 +1,13 @@
 <?php
 // CEK APAKAH IA SUDAH MEMILIKI KAMAR ATAU BELUM
 $id = $_SESSION['id_user'];
-
+$gender=$_SESSION['jenis_kelamin'];
 $kamar = "SELECT * FROM kamar_sewa WHERE id_user='".$id."'";
 $sql = mysqli_query($connect, $kamar);
 $arr = mysqli_fetch_array($sql);
 if (isset($arr)) {
   echo "<script>alert('Anda sudah memiliki kamar')</script>";
-  echo "<script>location.href = 'http://localhost/simau/mahasiswa/index.php'</script>";
+  echo "<script>location.href = 'http://localhost/simau-master/mahasiswa/index.php'</script>";
   exit;
 }
 
@@ -31,7 +31,7 @@ if (isset($_POST['data_pribadi'])) {
   
   $sql = "INSERT INTO data_pribadi (id_user, mendengkur, merokok, gelap, hewan, membaca, menulis, belajar, game, makan, hangout) VALUES ('" . $id ."','" . $_POST['mendengkur'] . "', '" . $_POST['merokok'] . "', '" . $_POST['gelap'] . "', '" . $_POST['hewan'] . "', '" . $_POST['membaca'] ."', '" . $_POST['menulis'] ."', '" . $_POST['belajar'] . "', '" . $_POST['game'] . "', '" . $_POST['makan'] . "', '" . $_POST['hangout'] . "')";
   if (mysqli_query($connect, $sql)) {
-    echo "<script>alert('Data berhasil ditambah')</script>";
+    echo "<script>alert('Data berhasil ditambah');document.location='?modul=profil'</script>";
   } else {
       echo "Error: " . $sql . "<br>" . mysqli_error($conn); exit;
   }
@@ -44,7 +44,7 @@ $sql = mysqli_query($connect, $data_pribadi);
 $arr = mysqli_fetch_array($sql);
 
 if ($arr === NULL) {
-  echo "<script>location.href = 'http://localhost/simau/mahasiswa/index.php?modul=data_pribadi'</script>";
+  echo "<script>document.location='?modul=data_pribadi'</script>";
 }
 ?>
 
@@ -56,14 +56,13 @@ if ($arr === NULL) {
 
 <div class="row">
 <?php
-$gender=$_SESSION['jenis_kelamin'];
 $page = (isset($_GET['page']))? $_GET['page'] : 1;
                     
                     $limit = 8; // Jumlah data per halamannya
                     
                     // Untuk menentukan dari data ke berapa yang akan ditampilkan pada tabel yang ada di database
                     $limit_start = ($page - 1) * $limit;
-$sql="SELECT * FROM kamar where jenis_kelamin='$gender' order by blok ASC LIMIT ".$limit_start.",".$limit;
+$sql="SELECT * FROM kamar where jenis_kelamin='$gender' order by id_kamar ASC LIMIT ".$limit_start.",".$limit;
 $query=mysqli_query($connect,$sql);
 $no = $limit_start + 1; // Untuk penomoran tabel
 while($data = mysqli_fetch_array($query)){
@@ -154,7 +153,7 @@ while($data1 = mysqli_fetch_array($query1)){
                 <?php
                 
                 // Buat query untuk menghitung semua jumlah data
-                $sql2 = mysqli_query($connect, "SELECT COUNT(*) AS jumlah FROM kamar");
+                $sql2 = mysqli_query($connect, "SELECT COUNT(*) AS jumlah FROM kamar where jenis_kelamin='$gender'");
                 $get_jumlah = mysqli_fetch_array($sql2);
                 
                 $jumlah_page = ceil($get_jumlah['jumlah'] / $limit); // Hitung jumlah halamannya
@@ -202,7 +201,7 @@ if($hasil)
   {
     $sql1="UPDATE kamar set kapasitas=kapasitas-1 where id_kamar='$idk'";
     $sql2=mysqli_query($connect,$sql1);
-    echo "<script>alert('Kamar Telah DiBooking, Silahkan Melakukan Pembayaran...');document.location='index.php'</script>";      
+    echo "<script>alert('Kamar Telah DiBooking, Silahkan Melakukan Pembayaran...');document.location='?modul=upload_bukti'</script>";      
   }
 }
 ?>

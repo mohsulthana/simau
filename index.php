@@ -8,7 +8,7 @@ include"acak.php";
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Splash &mdash; Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
+	<title>Login &mdash; SIMAU(Sistem Informasi Management Apartemen UNSRI)</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -101,10 +101,10 @@ include"acak.php";
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-12 col-md-offset-0 text-left">
-					
-
 					<div class="row row-mt-15em">
+					
 						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+				<img src="assets\system_tools\dist\img\UNSRI LOGO.png" width="100" height="100">
 							<span class="intro-text-small">Selamat Datang Di</span>
 							<h1>SISTEM INFORMASI APARTEMEN UNSRI</h1>	
 						</div>
@@ -193,10 +193,14 @@ if (mysqli_num_rows($hasil) == 1) {
   $_SESSION['jenis_kelamin']	= $has['jenis_kelamin'];
   
 
-  if($has['role']=="mahasiswa")
+if($has['role'] == "mahasiswa" && $has['status'] == "Berhenti")
+  {
+  	echo "<script>alert('Maaf, Akun Anda Tidak Bisa Digunakan Lagi...');document.location='index.php'</script>";	
+  }	
+   else if($has['role'] == "mahasiswa" && $has['status']!= "Berhenti")
   {
     echo "<script>document.location='mahasiswa/index.php'</script>";
-  }
+  } 
   
   }
   else

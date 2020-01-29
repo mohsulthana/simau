@@ -72,10 +72,9 @@ $mail->isHTML(true);
 
 // Konten/isi email
 $mailContent = "
-<h1>Pembayaran Anda Untuk Kamar Yang Telah Disewa Telah Berhasil Diverifikasi</h1>
-<p>Data Foto / Screen Shoot Benar Dan Valid...</p>
-<p>Untuk Melihat Info Kamar Anda , Silahkan Buka Menu Print Info Kamar...</p>
-<h3>Selamat Datang Di Apartemen UNSRI : ) </h3>
+<h1>FOTO UPLOAD BUKTI PEMBAYARAN  ANDA TELAH DI VERIFIKASI OLEH KAMI</h1>
+<p>SELAMAT DATANG  DI APARTEMEN UNSRI</p>
+<p>SILAHKAN CEK DI INFO KAMAR SEBAGAI BUKTI TRANSAKSI YANG SAH </p>
 </body>";
 $mail->Body = $mailContent;
 
@@ -94,9 +93,11 @@ if($sewa)
     
 }
 
-echo "<script>alert('Verifikasi Berhasil'...);document.location='index.php'</script>";    
+
 
 }
+
+echo "<script>alert('Verifikasi Berhasil'...);document.location='index.php'</script>";    
 
 }
 ?>

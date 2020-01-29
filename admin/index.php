@@ -32,13 +32,18 @@ $notif4="SELECT * from perpanjang_bayar where status_perpanjang =''";
 $notif_panjang=mysqli_query($connect,$notif4);
 $count_panjang=mysqli_num_rows($notif_panjang);
 
+//notif untuk cek berhenti menyewa
+$notif5="SELECT * from berhenti_sewa where status_berhenti ='Sedang Diajukan'";
+$notif_henti=mysqli_query($connect,$notif5);
+$count_henti=mysqli_num_rows($notif_henti);
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Advanced form elements</title>
+  <title>Dashboard Admin| SIMAU</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -73,58 +78,17 @@ $count_panjang=mysqli_num_rows($notif_panjang);
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link fa fa-user">
-          Profil
-        </a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../logout.php" class="nav-link fa fa-arrow-left"> Logout</a>
-      </li>
     </ul>
 
         <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="fa fa-envelope-o"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="?modul=profil" class="nav-link fa fa-user">
+          Profil  
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="../assets/system_tools/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
       </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="fa fa-bell-o"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <i class="fa fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../logout.php" class="nav-link fa fa-arrow-right"> Logout</a>
       </li>
     </ul>
   </nav>
@@ -187,7 +151,7 @@ $count_panjang=mysqli_num_rows($notif_panjang);
               <i class="nav-icon fa fa-home"></i>
               <p>
                 Management admin 
-                <?php if ($count_bayar > 0 || $count_pindah > 0 || $count_panjang > 0){?>
+                <?php if ($count_bayar > 0 || $count_pindah > 0 || $count_panjang > 0 || $count_henti > 0){?>
                   <span class="right badge badge-danger">New</span>
                 <?php } else { ?>  
                 <i class="right fa fa-angle-left"></i>
@@ -228,6 +192,17 @@ $count_panjang=mysqli_num_rows($notif_panjang);
               </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="?modul=kelola_berhenti_sewa" class="nav-link">
+                  <i class="fa fa-users"></i>
+                  <p>Kelola Berhenti Menyewa
+                  <?php if ($count_henti > 0){?>
+                  <span class="right badge badge-danger"><?php echo $count_henti ?></span>
+                <?php } else { ?>
+                <?php } ?>
+              </p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -252,31 +227,66 @@ $count_panjang=mysqli_num_rows($notif_panjang);
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-folder"></i>
               <p>
-                Laporan Apartemen 
+                Laporan User 
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="?modul=kelola_bukti_pembayaran" class="nav-link">
+                <a href="modul/laporan_user_b.php" class="nav-link" target="blank">
                   <i class="fa fa-file"></i>
-                  <p>Laporan User</p>
+                  <p>Laporan Belum Lengkap</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="modul/laporan_user_l.php" class="nav-link" target="blank">
                   <i class="fa fa-file"></i>
-                  <p>Laporan Kamar</p>
+                  <p>Laporan Lengkap</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="modul/laporan_user_p.php" class="nav-link" target="blank">
                   <i class="fa fa-file"></i>
-                  <p>Laporan Transaksi</p>
+                  <p>Laporan Penyewa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="modul/laporan_user_h.php" class="nav-link" target="blank">
+                  <i class="fa fa-file"></i>
+                  <p>Laporan Berhenti</p>
                 </a>
               </li>
             </ul>
-          </li>       
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-folder"></i>
+              <p>
+                Laporan Kamar 
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="modul/laporan_kamar_l.php" class="nav-link" target="blank">
+                  <i class="fa fa-file"></i>
+                  <p>Laporan Kamar Laki-laki</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="modul/laporan_kamar_p.php" class="nav-link" target="blank">
+                  <i class="fa fa-file"></i>
+                  <p>Laporan Kamar Perempuan</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="modul/laporan_transaksi.php" class="nav-link" target="blank">
+              <i class="nav-icon fa fa-file-o"></i>
+                <p>Laporan Transaksi</p>
+                </a>
+              </li>       
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -29,10 +29,21 @@ Info Penyewa: <br/>
                 $idk=$data['id_kamar'];
                 $sql1="SELECT * FROM kamar_sewa join kamar on kamar_sewa.id_kamar=kamar.id_kamar join user on kamar_sewa.id_user=user.id_user where kamar.id_kamar='$idk'";
                 $query1=mysqli_query($connect,$sql1);
-                while($data1 = mysqli_fetch_array($query1)){
-?>                
-<span class="fa fa-user"><?php echo $data1['nama'] ?></span>
+                
+?>
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Nama</th>
+    <th>NIM</th>
+  </tr>
+  <?php while($data1 = mysqli_fetch_array($query1)){ ?>
+  <tr>
+    <td><span class="fa fa-user"> <?php echo $data1['nama'] ?></span></td>
+    <td><?php echo $data1['nim'] ?></td>
+  </tr>
 <?php } ?>
+</table>                                
+
 <br/><br/>
 <a href="?modul=kelola_kamar" class="btn btn-danger fa fa-arrow-left"> Kembali</a>
               </div>

@@ -6,11 +6,9 @@ $data_pribadi = "SELECT data_pribadi.id_user FROM data_pribadi INNER JOIN user O
 $sql = mysqli_query($connect, $data_pribadi);
 $arr = mysqli_fetch_array($sql);
 
-if ($arr == NULL) {
-  echo "haha";
-  header("Location: ./data_pribadi");
+if ($arr == NULL && $_SESSION['status']=='belum lengkap') {
+  echo"<script>alert('Maaf Menggangu, Silahkan Isi Data Pribadi Terlebih Dahulu');document.location='?modul=data_pribadi'</script>";
 }
-
 
 $id = $_SESSION['id_user'];
 $status = $_SESSION['status'];
@@ -19,8 +17,8 @@ $status = $_SESSION['status'];
 $query ="SELECT * FROM user WHERE id_user='$id'";
 $que = mysqli_query($connect,$query);
 $sql=mysqli_fetch_array($que);
-
 ?>
+
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -494,7 +492,7 @@ $status=$_POST['status'];
 $a="UPDATE user set fakultas='$fakultas', jurusan='$jurusan', tanggal_lahir='$tanggal', agama='$agama', jenis_kelamin='$jk', alamat='$alamat', gol_dar='$goldar', no_hp='$nohp', ortu_wali='$orwa', no_hp_ortu='$norw', status='$status' where id_user='$idu'";
 $hasil = mysqli_query($connect,$a);
 
-echo "<script>alert('Anda telah melengkapi data diri yang diperlukan'); window.location = './index.php'</script>";
+echo "<script>alert('Anda telah melengkapi data diri yang diperlukan');document.location='../mahasiswa/index.php'</script>";
 }
 
 if(isset($_POST['edit'])){
@@ -524,14 +522,14 @@ $lokasi_file=$_FILES['foto_profil']['tmp_name'];
 $b="UPDATE user set tanggal_lahir='$tanggal', agama='$agama', jenis_kelamin='$jk', alamat='$alamat', gol_dar='$goldar', no_hp='$nohp', ortu_wali='$orwa', no_hp_ortu='$norw', status='$status',nim='$nim',nama='$nama',email='$email',password='$password',foto_profil='$q' where id_user='$idu'";
 $hasil = mysqli_query($connect,$b);
 
-echo "<script>alert('Anda Telah Melengkapi Data Diri...'); window.location = '../logout.php'</script>";
+echo "<script>alert('Anda Telah Melengkapi Data Diri...');document.location='../mahasiswa/index.php'</script>";
 }
 else
 {
 $b="UPDATE user set tanggal_lahir='$tanggal', agama='$agama', jenis_kelamin='$jk', alamat='$alamat', gol_dar='$goldar', no_hp='$nohp', ortu_wali='$orwa', no_hp_ortu='$norw', status='$status',nim='$nim',nama='$nama',email='$email',password='$password' where id_user='$idu'";
 $hasil = mysqli_query($connect,$b);
 
-echo "<script>alert('Anda Telah Melengkapi Data Diri...'); window.location = '../logout.php'</script>";
+echo "<script>alert('Anda Telah Melengkapi Data Diri...');;document.location='../mahasiswa/index.php'</script>";
 
 }
 
@@ -546,6 +544,6 @@ $idu=$_POST['id_user'];
 $c="UPDATE user set fakultas='$fakultas', jurusan='$jurusan' where id_user='$idu'";
 $hasil = mysqli_query($connect,$c);
 
-echo "<script>alert('Anda Telah Mengedit Fakultas dan Jurusan...'); window.location = '../logout.php'</script>";
+echo "<script>alert('Anda Telah Mengedit Fakultas dan Jurusan...');document.location='../mahasiswa/index.php'</script>";
 }  
 ?>

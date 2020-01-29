@@ -190,7 +190,7 @@
                 </li>
               </ol>
               <button style="float: right;" value="true" name="data_pribadi" class="btn btn-primary" type="submit">Simpan jawaban</button>
-              <a href="?modul=pilih_otomatis" style="float: right;" class="btn btn-primary-outline">Kembali</a>
+              <a href="index.php" style="float: right;" class="btn btn-primary-outline">Kembali</a>
             </form>
           </div>
         </div>
